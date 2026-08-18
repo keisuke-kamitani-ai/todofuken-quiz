@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>インド旅行プランナー | Hyderabad Wedding Trip 2026</title>
+<style>
+  :root{
+    --bg:#0f1115;
+    --panel:#171a21;
+    --panel2:#1e222b;
+    --border:#2a2f3a;
+    --text:#e8e9ed;
+    --sub:#9aa1b0;
+    --accent:#ff6b35;
+    --accent2:#f7931e;
+    --green:#4caf50;
+    --blue:#3d8bfd;
+    --pink:#ff4d6d;
+    --radius:14px;
+    --shadow:0 4px 20px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+    background:linear-gradient(160deg,#0f1115 0%,#161a22 100%);
+    color:var(--text);
+    min-height:100vh;
+    padding-bottom:80px;
+  }
+  header.hero{
+    padding:28px 20px 20px;
+    text-align:center;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255,107,53,.25), transparent 55%),
+      radial-gradient(circle at 80% 0%, rgba(61,139,253,.2), transparent 55%);
+    border-bottom:1px solid var(--border);
+  }
+  header.hero h1{
+    margin:0 0 4px;
+    font-size:1.5rem;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  header.hero p{margin:0;color:var(--sub);font-size:.85rem;}
+  .countdown{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:16px;
+    flex-wrap:wrap;
+  }
+  .countdown .box{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:10px 14px;
+    min-width:64px;
+    text-align:center;
+  }
+  .countdown .box b{display:block;font-size:1.4rem;color:var(--accent2);}
+  .countdown .box span{font-size:.65rem;color:var(--sub);}
+
+  nav.tabs{
+    position:sticky;top:0;z-index:50;
+    display:flex;
+    overflow-x:auto;
+    background:rgba(15,17,21,.95);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--border);
+    -webkit-overflow-scrolling:touch;
+  }
+  nav.tabs button{
+    flex:0 0 auto;
+    padding:14px 16px;
+    background:none;
+    border:none;
+    color:var(--sub);
+    font-size:.85rem;
+    font-weight:600;
+    cursor:pointer;
+    border-bottom:2px solid transparent;
+    white-space:nowrap;
+  }
+  nav.tabs button.active{
+    color:var(--text);
+    border-bottom-color:var(--accent);
+  }
+
+  main{max-width:760px;margin:0 auto;padding:18px 16px;}
+  section.view{display:none;animation:fade .25s ease;}
+  section.view.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+  h2.section-title{
+    font-size:1.05rem;
+    margin:22px 0 10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  h2.section-title:first-child{margin-top:0;}
+
+  .card{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:16px;
+    margin-bottom:12px;
+    box-shadow:var(--shadow);
+  }
+  .card h3{margin:0 0 6px;font-size:1rem;}
+  .card p{margin:0;color:var(--sub);font-size:.85rem;line-height:1.6;}
+  .tag{
+    display:inline-block;
+    font-size:.68rem;
+    padding:2px 8px;
+    border-radius:20px;
+    margin-right:6px;
+    margin-bottom:6px;
+    font-weight:600;
+  }
+  .tag.orange{background:rgba(255,107,53,.15);color:var(--accent);}
+  .tag.blue{background:rgba(61,139,253,.15);color:var(--blue);}
+  .tag.green{background:rgba(76,175,80,.15);color:var(--green);}
+  .tag.pink{background:rgba(255,77,109,.15);color:var(--pink);}
+
+  /* Itinerary */
+  .day-card{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-left:4px solid var(--accent);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    margin-bottom:10px;
+  }
+  .day-card.wedding{border-left-color:var(--pink);}
+  .day-card .day-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:6px;
+  }
+  .day-card .day-head .date{font-weight:700;font-size:.95rem;}
+  .day-card .day-head .dow{color:var(--sub);font-size:.75rem;}
+  .day-card .plan-title{font-size:.9rem;font-weight:600;margin-bottom:4px;color:var(--accent2);}
+  .day-card textarea{
+    width:100%;
+    background:var(--panel2);
+    border:1px solid var(--border);
+    border-radius:8px;
+    color:var(--text);
+    padding:8px 10px;
+    font-size:.82rem;
+    font-family:inherit;
+    resize:vertical;
+    min-height:44px;
+  }
+
+  /* Spots */
+  .spot-group h3.g{
+    font-size:.8rem;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--sub);
+    margin:20px 0 8px;
+  }
+
+  /* Checklist */
+  .check-item{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:10px 4px;
+    border-bottom:1px solid var(--border);
+    font-size:.88rem;
+  }
+  .check-item:last-child{border-bottom:none;}
+  .check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--accent);}
+  .check-item label{flex:1;cursor:pointer;}
+  .check-item.checked label{color:var(--sub);text-decoration:line-through;}
+  .progress-wrap{
+    background:var(--panel2);
+    border-radius:10px;
+    height:8px;
+    overflow:hidden;
+    margin:8px 0 16px;
+  }
+  .progress-bar{
+    height:100%;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    transition:width .3s ease;
+  }
+
+  /* Budget */
+  .budget-summary{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .budget-summary .card{margin-bottom:0;text-align:center;}
+  .budget-summary .card b{display:block;font-size:1.3rem;color:var(--accent2);}
+  .budget-summary .card span{font-size:.7rem;color:var(--sub);}
+  .expense-form{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;}
+  .expense-form input,.expense-form select{
+    background:var(--panel2);
+    border:1px solid var(--border);
+    border-radius:8px;
+    color:var(--text);
+    padding:8px 10px;
+    font-size:.82rem;
+    font-family:inherit;
+  }
+  .expense-form input[name="desc"]{flex:1 1 140px;}
+  .expense-form input[name="amt"]{width:100px;}
+  .expense-form button{
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    padding:8px 14px;
+    font-size:.82rem;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .expense-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:9px 4px;
+    border-bottom:1px solid var(--border);
+    font-size:.85rem;
+  }
+  .expense-row .cat{color:var(--sub);font-size:.72rem;}
+  .expense-row .del{
+    background:none;border:none;color:var(--sub);cursor:pointer;font-size:.9rem;padding:4px 6px;
+  }
+  .expense-row .amt{font-weight:700;color:var(--accent2);white-space:nowrap;margin-left:8px;}
+
+  .info-block{margin-bottom:14px;}
+  .info-block h3{font-size:.9rem;margin:0 0 6px;color:var(--accent2);}
+  .info-block p, .info-block li{color:var(--sub);font-size:.84rem;line-height:1.7;}
+  .info-block ul{margin:4px 0;padding-left:18px;}
+
+  .footer-note{
+    text-align:center;
+    color:var(--sub);
+    font-size:.7rem;
+    margin-top:30px;
+    padding:0 20px;
+  }
+  a{color:var(--blue);}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>🇮🇳 South India Trip 2026</h1>
+  <p>Hyderabad 友人の結婚式 &amp; 南インドはじめての旅</p>
+  <div class="countdown" id="countdown">
+    <div class="box"><b id="cd-days">--</b><span>DAYS</span></div>
+    <div class="box"><b id="cd-hours">--</b><span>HOURS</span></div>
+    <div class="box"><b id="cd-mins">--</b><span>MIN</span></div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-view="home">ホーム</button>
+  <button class="tab-btn" data-view="itinerary">日程表</button>
+  <button class="tab-btn" data-view="spots">観光スポット</button>
+  <button class="tab-btn" data-view="packing">準備リスト</button>
+  <button class="tab-btn" data-view="budget">予算</button>
+  <button class="tab-btn" data-view="tips">現地情報</button>
+</nav>
+
+<main>
+
+  <!-- HOME -->
+  <section class="view active" id="view-home">
+    <h2 class="section-title">✨ このアプリについて</h2>
+    <div class="card">
+      <p>
+        2026年12月13日、ハイデラバードでの友人の結婚式に合わせた個人旅行専用プランナーです。
+        南インドは初訪問という前提で、土地勘がなくても動けるように「日程」「観光スポット」「準備」「予算」「現地情報」を1つにまとめました。
+        入力データは端末のブラウザ内(localStorage)に保存され、あなた専用の記録として残ります。
+      </p>
+    </div>
+
+    <h2 class="section-title">💒 結婚式の基本情報</h2>
+    <div class="card">
+      <span class="tag pink">MAIN EVENT</span>
+      <h3>友人の結婚式</h3>
+      <p>📅 2026年12月13日（日）　📍 ハイデラバード（テランガーナ州）</p>
+      <p style="margin-top:8px;">
+        インドの結婚式は複数日に渡る行事（サンギート、メヘンディ、本式など）が前後にあることが多いです。
+        友人から「他の行事に呼ばれているか」「ドレスコード（民族衣装 or カジュアルフォーマル）」「ご祝儀の相場」を早めに確認しておきましょう。
+      </p>
+    </div>
+
+    <h2 class="section-title">🗺️ おすすめの旅の型</h2>
+    <div class="card">
+      <p><b style="color:var(--accent2)">Plan A：ハイデラバード拠点でゆったり</b><br>
+      式の前後をハイデラバード市内＋日帰り圏（ゴルコンダ砦、チャールミナール、ラモジ・フィルム・シティ）で過ごす、移動が少ない安心プラン。</p>
+      <p style="margin-top:10px;"><b style="color:var(--accent2)">Plan B：南インド周遊</b><br>
+      式の前後どちらかでハンピ（世界遺産の遺跡群、飛行機+車で1〜2泊）やチェンナイ／マハーバリプラム方面まで足を伸ばす、初めての南インドを広く見るプラン。</p>
+      <p style="margin-top:10px;color:var(--sub);font-size:.78rem;">
+        ※ 南インドは国土が広く、都市間移動は基本的に飛行機がおすすめです（電車・バスは距離のわりに時間がかかります）。
+      </p>
+    </div>
+  </section>
+
+  <!-- ITINERARY -->
+  <section class="view" id="view-itinerary">
+    <h2 class="section-title">📅 日程表（自由に編集できます）</h2>
+    <p style="color:var(--sub);font-size:.8rem;margin-top:-6px;">各日のメモをタップして編集 → 自動保存されます。</p>
+    <div id="itinerary-list"></div>
+    <div style="text-align:center;margin-top:14px;">
+      <button onclick="addDay()" style="background:var(--panel2);border:1px solid var(--border);color:var(--text);padding:10px 18px;border-radius:10px;font-size:.85rem;cursor:pointer;">＋ 日程を追加</button>
+      <button onclick="resetItinerary()" style="background:none;border:none;color:var(--sub);padding:10px 12px;font-size:.78rem;cursor:pointer;text-decoration:underline;">サンプル日程に戻す</button>
+    </div>
+  </section>
+
+  <!-- SPOTS -->
+  <section class="view" id="view-spots">
+    <h2 class="section-title">📍 観光スポット・エリアガイド</h2>
+
+    <div class="spot-group">
+      <h3 class="g">ハイデラバード市内</h3>
+
+      <div class="card">
+        <span class="tag orange">世界遺産候補</span><span class="tag green">半日</span>
+        <h3>ゴルコンダ砦 (Golconda Fort)</h3>
+        <p>ダイヤモンド交易で栄えた要塞都市の遺跡。音響効果を体験できる仕掛けが有名。夕方の「光と音のショー」も人気。市内から車で30〜40分。</p>
+      </div>
+      <div class="card">
+        <span class="tag orange">象徴的建造物</span><span class="tag green">1〜2時間</span>
+        <h3>チャールミナール (Charminar)</h3>
+        <p>ハイデラバードのシンボル的モニュメント。周辺のラード・バザール（真珠・バングル市場）やモスク巡りとセットで。人が多く活気があるので、貴重品管理に注意。</p>
+      </div>
+      <div class="card">
+        <span class="tag blue">エンタメ</span><span class="tag green">半日〜1日</span>
+        <h3>ラモジ・フィルム・シティ (Ramoji Film City)</h3>
+        <p>世界最大級の映画スタジオ兼テーマパーク。家族連れや観光客に人気で、丸1日楽しめる規模。事前予約推奨。</p>
+      </div>
+      <div class="card">
+        <span class="tag pink">湖・夜景</span><span class="tag green">1〜2時間</span>
+        <h3>フセインサーガル湖 (Hussain Sagar Lake)</h3>
+        <p>市の中心にある人工湖。湖上のブッダ像や、夕方の散歩・ボート、ネックレスロードからの夜景がおすすめ。</p>
+      </div>
+      <div class="card">
+        <span class="tag orange">歴史</span><span class="tag green">1〜2時間</span>
+        <h3>チョウマハッラー宮殿 (Chowmahalla Palace)</h3>
+        <p>ニザーム（旧ハイデラバード藩王国の王）の宮殿。優雅な建築とコレクションを鑑賞できる、落ち着いたスポット。</p>
+      </div>
+    </div>
+
+    <div class="spot-group">
+      <h3 class="g">日帰り〜1泊圏（テランガーナ／近郊）</h3>
+      <div class="card">
+        <span class="tag blue">寺院建築</span><span class="tag green">日帰り</span>
+        <h3>ワランガル (Warangal)</h3>
+        <p>ハイデラバードから車で約3時間。カカティヤ朝の千柱寺院やワランガル砦など、精緻な彫刻建築が見られる穴場スポット。</p>
+      </div>
+    </div>
+
+    <div class="spot-group">
+      <h3 class="g">足を伸ばして（南インド周遊向け・飛行機移動推奨）</h3>
+      <div class="card">
+        <span class="tag pink">世界遺産</span><span class="tag orange">必見</span>
+        <h3>ハンピ (Hampi)｜カルナータカ州</h3>
+        <p>ヴィジャヤナガル王国の広大な遺跡群。奇岩と寺院が織りなす独特の景観は南インド屈指。ハイデラバードから飛行機でハンピ近郊の空港（ハンピ空港/ベラリ経由）or 電車・車を利用。1泊以上推奨。</p>
+      </div>
+      <div class="card">
+        <span class="tag blue">古都・寺院</span>
+        <h3>マイソール／ベンガルール｜カルナータカ州</h3>
+        <p>マイソール宮殿で有名な古都。ベンガルール（バンガロール）からアクセスしやすく、都市観光と組み合わせやすい。</p>
+      </div>
+      <div class="card">
+        <span class="tag green">海辺・遺跡</span>
+        <h3>マハーバリプラム／チェンナイ｜タミルナードゥ州</h3>
+        <p>海岸寺院群で知られる世界遺産の港町。チェンナイから車で1〜2時間。ビーチと石彫刻遺跡を楽しめる。</p>
+      </div>
+      <div class="card">
+        <span class="tag pink">自然・バックウォーター</span>
+        <h3>コチ／バックウォーター｜ケーララ州</h3>
+        <p>中華式漁網やスパイス市場が残る港町コチと、ハウスボートで巡るバックウォータークルーズ。南インドらしいゆったりした時間が過ごせるが、ハイデラバードからは距離があるので日程に余裕がある場合向け。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKING -->
+  <section class="view" id="view-packing">
+    <h2 class="section-title">🎒 準備リスト</h2>
+    <div class="progress-wrap"><div class="progress-bar" id="pack-progress" style="width:0%"></div></div>
+    <p id="pack-progress-text" style="color:var(--sub);font-size:.8rem;margin-top:-10px;"></p>
+
+    <h3 class="g" style="color:var(--sub);font-size:.8rem;text-transform:uppercase;margin:18px 0 6px;">手続き・お金</h3>
+    <div class="card" id="pack-docs"></div>
+
+    <h3 class="g" style="color:var(--sub);font-size:.8rem;text-transform:uppercase;margin:18px 0 6px;">結婚式の準備</h3>
+    <div class="card" id="pack-wedding"></div>
+
+    <h3 class="g" style="color:var(--sub);font-size:.8rem;text-transform:uppercase;margin:18px 0 6px;">持ち物（衣類・日用品）</h3>
+    <div class="card" id="pack-items"></div>
+
+    <h3 class="g" style="color:var(--sub);font-size:.8rem;text-transform:uppercase;margin:18px 0 6px;">健康・安全</h3>
+    <div class="card" id="pack-health"></div>
+  </section>
+
+  <!-- BUDGET -->
+  <section class="view" id="view-budget">
+    <h2 class="section-title">💰 予算管理</h2>
+    <div class="budget-summary">
+      <div class="card"><b id="total-inr">₹0</b><span>合計（INR）</span></div>
+      <div class="card"><b id="total-jpy">¥0</b><span>合計（目安・JPY）</span></div>
+    </div>
+    <p style="color:var(--sub);font-size:.72rem;margin-top:-8px;">※ 換算レートは目安（1 INR ≈ 1.9 JPY、下の設定で調整可）</p>
+
+    <div class="card" style="margin-bottom:14px;">
+      <label style="font-size:.78rem;color:var(--sub);">為替レート（1 INR = ? JPY）</label><br>
+      <input type="number" id="rate-input" value="1.9" step="0.01" style="margin-top:6px;width:100px;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:6px 10px;">
+    </div>
+
+    <form class="expense-form" id="expense-form">
+      <input type="text" name="desc" placeholder="項目（例：ホテル代）" required>
+      <input type="number" name="amt" placeholder="金額(INR)" required step="1">
+      <select name="cat">
+        <option>宿泊</option>
+        <option>交通</option>
+        <option>食事</option>
+        <option>観光</option>
+        <option>結婚式・ご祝儀</option>
+        <option>お土産</option>
+        <option>その他</option>
+      </select>
+      <button type="submit">追加</button>
+    </form>
+
+    <div id="expense-list"></div>
+  </section>
+
+  <!-- TIPS -->
+  <section class="view" id="view-tips">
+    <h2 class="section-title">📖 現地情報・お役立ちTips</h2>
+
+    <div class="card info-block">
+      <h3>🛂 ビザ</h3>
+      <p>日本国籍なら通常 e-Visa（電子ビザ）が利用可能。渡航の数日〜数週間前にオンライン申請を。パスポート残存有効期間・空白ページも確認。</p>
+    </div>
+
+    <div class="card info-block">
+      <h3>🌤️ 12月の気候（ハイデラバード）</h3>
+      <p>乾季で比較的過ごしやすい時期。日中は20〜28℃前後、朝晩は15℃前後まで下がることも。半袖＋羽織もの（薄手の上着）があると安心。南部沿岸（チェンナイ／コチ方面）は日中より蒸し暑さを感じることがある。</p>
+    </div>
+
+    <div class="card info-block">
+      <h3>💉 健康・水</h3>
+      <ul>
+        <li>水道水は飲まず、ミネラルウォーター（封が閉まっているもの）を購入する</li>
+        <li>屋台の生野菜・氷には要注意。よく火が通った出来立てのものを選ぶ</li>
+        <li>虫除け・日焼け止め・胃腸薬・常備薬を持参</li>
+        <li>出発前にA型肝炎などの予防接種を検討（かかりつけ医・トラベルクリニックに相談）</li>
+      </ul>
+    </div>
+
+    <div class="card info-block">
+      <h3>💵 通貨・支払い</h3>
+      <p>通貨はインドルピー（INR）。都市部ではUPI／カード決済も普及しているが、屋台や小規模店、遺跡の入場料などは現金が必要な場面も多い。空港よりも到着後の街中ATMの方がレートが良いことが多い。</p>
+    </div>
+
+    <div class="card info-block">
+      <h3>🚕 移動</h3>
+      <p>市内は Uber / Ola（配車アプリ）が便利で安心。都市間は距離があるため飛行機移動が基本（IndiGo, Air Indiaなど）。長距離列車は雰囲気があるが所要時間が長い点に注意。</p>
+    </div>
+
+    <div class="card info-block">
+      <h3>🗣️ 言語</h3>
+      <p>ハイデラバードは主にテルグ語・ウルドゥー語圏、南インド全体ではタミル語・カンナダ語・マラヤーラム語など州ごとに異なる。都市部・観光地では英語が広く通じるので、基本は英語でOK。</p>
+    </div>
+
+    <div class="card info-block">
+      <h3>👗 結婚式のドレスコード</h3>
+      <p>インドの結婚式は華やかな民族衣装（女性はサリーやレヘンガ、男性はクルタなど）が定番だが、ゲストとして参加する場合は「明るい色の上品な服（白と黒は避ける）」であれば洋装でも問題ないことが多い。事前に新郎新婦にドレスコードを確認するのが確実。</p>
+    </div>
+
+    <div class="card info-block">
+      <h3>🍛 食事</h3>
+      <p>南インドはベジタリアン料理が非常に豊富（ミールス、ドーサ、イドリなど）。辛さ控えめをお願いする場合は "less spicy please" が便利。ハイデラバードは名物「ハイデラバーディー・ビリヤニ」が必食。</p>
+    </div>
+
+    <div class="card info-block">
+      <h3>🔌 電源・通信</h3>
+      <p>プラグ形状は主にタイプC/D/M。変換プラグを持参。SIMは空港でも購入可能だが、事前にeSIM（Airaloなど）を用意しておくと到着後すぐ通信できて便利。</p>
+    </div>
+
+    <div class="card info-block">
+      <h3>🙏 マナー・治安</h3>
+      <ul>
+        <li>寺院や宮殿では肌の露出を控え、履物を脱ぐ場所も多い</li>
+        <li>写真撮影禁止エリアがあるので案内表示に注意</li>
+        <li>人混みでは貴重品管理をしっかりと（バッグは前に）</li>
+        <li>頭を撫でる、足で人や物を指すのは避けるなど、ちょっとしたマナーに配慮すると◎</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<p class="footer-note">個人旅行用メモアプリ ・ データはこの端末のブラウザにのみ保存されます</p>
+
+<script>
+// ---------- Tabs ----------
+const tabBtns = document.querySelectorAll('.tab-btn');
+const views = document.querySelectorAll('.view');
+tabBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    tabBtns.forEach(b=>b.classList.remove('active'));
+    views.forEach(v=>v.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('view-'+btn.dataset.view).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+// ---------- Countdown ----------
+const WEDDING_DATE = new Date('2026-12-13T11:00:00+05:30');
+function updateCountdown(){
+  const now = new Date();
+  const diff = WEDDING_DATE - now;
+  const dEl=document.getElementById('cd-days'), hEl=document.getElementById('cd-hours'), mEl=document.getElementById('cd-mins');
+  if(diff<=0){
+    dEl.textContent='🎉'; hEl.textContent='--'; mEl.textContent='--';
+    return;
+  }
+  const days = Math.floor(diff/(1000*60*60*24));
+  const hours = Math.floor((diff/(1000*60*60))%24);
+  const mins = Math.floor((diff/(1000*60))%60);
+  dEl.textContent=days; hEl.textContent=hours; mEl.textContent=mins;
+}
+updateCountdown();
+setInterval(updateCountdown,60000);
+
+// ---------- Itinerary ----------
+const defaultItinerary = [
+  {date:'2026-12-10', dow:'木', title:'日本発 → ハイデラバード着', note:'フライトで移動。到着後はホテルで休息、時差調整。'},
+  {date:'2026-12-11', dow:'金', title:'ハイデラバード観光①', note:'チャールミナール、ラード・バザール、チョウマハッラー宮殿。'},
+  {date:'2026-12-12', dow:'土', title:'ハイデラバード観光②', note:'ゴルコンダ砦（夕方の光と音のショー）、フセインサーガル湖の夜景。'},
+  {date:'2026-12-13', dow:'日', title:'💒 友人の結婚式', note:'当日のスケジュール・ドレスコードを事前に確認しておく。'},
+  {date:'2026-12-14', dow:'月', title:'ゆっくり／結婚式の余韻・振り返り', note:'式後の行事があれば参加。なければ市内で買い物やカフェ巡り。'},
+  {date:'2026-12-15', dow:'火', title:'周遊 or ハイデラバード延泊', note:'ハンピ／チェンナイ方面へ移動するか、ラモジ・フィルム・シティで1日過ごす。'},
+  {date:'2026-12-16', dow:'水', title:'周遊先観光', note:'（例）ハンピ遺跡群を1日かけて散策。'},
+  {date:'2026-12-17', dow:'木', title:'帰路 or 延泊', note:'ハイデラバードへ戻る、または帰国便に接続。'},
+];
+
+function loadItinerary(){
+  const saved = localStorage.getItem('india_itinerary');
+  return saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(defaultItinerary));
+}
+function saveItinerary(data){
+  localStorage.setItem('india_itinerary', JSON.stringify(data));
+}
+let itinerary = loadItinerary();
+
+function renderItinerary(){
+  const list = document.getElementById('itinerary-list');
+  list.innerHTML = '';
+  itinerary.forEach((day, idx)=>{
+    const isWedding = day.title.includes('結婚式');
+    const el = document.createElement('div');
+    el.className = 'day-card' + (isWedding ? ' wedding':'');
+    el.innerHTML = `
+      <div class="day-head">
+        <span class="date">${day.date}</span>
+        <span class="dow">${day.dow}曜日</span>
+      </div>
+      <div class="plan-title" contenteditable="true" data-idx="${idx}" data-field="title">${day.title}</div>
+      <textarea data-idx="${idx}" data-field="note" placeholder="メモを入力...">${day.note}</textarea>
+    `;
+    list.appendChild(el);
+  });
+
+  list.querySelectorAll('textarea').forEach(t=>{
+    t.addEventListener('input', e=>{
+      const idx = e.target.dataset.idx;
+      itinerary[idx].note = e.target.value;
+      saveItinerary(itinerary);
+    });
+  });
+  list.querySelectorAll('.plan-title').forEach(t=>{
+    t.addEventListener('blur', e=>{
+      const idx = e.target.dataset.idx;
+      itinerary[idx].title = e.target.textContent;
+      saveItinerary(itinerary);
+    });
+  });
+}
+function addDay(){
+  const last = itinerary[itinerary.length-1];
+  const nextDate = new Date(last.date);
+  nextDate.setDate(nextDate.getDate()+1);
+  const dows = ['日','月','火','水','木','金','土'];
+  itinerary.push({
+    date: nextDate.toISOString().slice(0,10),
+    dow: dows[nextDate.getDay()],
+    title: '新しい予定',
+    note: ''
+  });
+  saveItinerary(itinerary);
+  renderItinerary();
+}
+function resetItinerary(){
+  if(confirm('日程表をサンプルに戻します。よろしいですか？')){
+    itinerary = JSON.parse(JSON.stringify(defaultItinerary));
+    saveItinerary(itinerary);
+    renderItinerary();
+  }
+}
+renderItinerary();
+
+// ---------- Packing checklist ----------
+const packingData = {
+  'pack-docs': [
+    'パスポート（残存有効期間・コピーも用意）',
+    'e-Visa 申請・印刷',
+    '航空券・eチケット控え',
+    '海外旅行保険加入',
+    '現金（INR両替 or 現地ATM計画）',
+    'クレジットカード（複数枚・海外利用設定確認）',
+    'ホテル・宿泊先の予約確認書'
+  ],
+  'pack-wedding': [
+    '結婚式のドレスコードを新郎新婦に確認',
+    'フォーマル／民族調の服装を用意',
+    'ご祝儀・お祝いギフトの準備',
+    '結婚式の日程・会場・時間の再確認',
+    '前後の関連行事（サンギート等）への招待有無を確認'
+  ],
+  'pack-items': [
+    '変換プラグ（タイプC/D/M）・モバイルバッテリー',
+    'SIM／eSIMの準備',
+    '薄手の羽織もの（朝晩の冷え対策）',
+    '歩きやすい靴（寺院では脱ぎ履きしやすいもの）',
+    'サングラス・帽子・日焼け止め',
+    'スーツケースロック・南京錠'
+  ],
+  'pack-health': [
+    '常備薬（胃腸薬・解熱鎮痛剤など）',
+    '虫除けスプレー',
+    'ウェットティッシュ・除菌ジェル',
+    '経口補水液の粉末（下痢・脱水対策）',
+    '予防接種の検討（A型肝炎など・要事前相談）'
+  ]
+};
+
+function loadChecklist(){
+  const saved = localStorage.getItem('india_checklist');
+  return saved ? JSON.parse(saved) : {};
+}
+function saveChecklist(state){
+  localStorage.setItem('india_checklist', JSON.stringify(state));
+}
+let checklistState = loadChecklist();
+
+function renderChecklists(){
+  let totalItems = 0, checkedItems = 0;
+  Object.entries(packingData).forEach(([containerId, items])=>{
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    items.forEach((item, i)=>{
+      const key = containerId + '-' + i;
+      const checked = !!checklistState[key];
+      totalItems++; if(checked) checkedItems++;
+      const row = document.createElement('div');
+      row.className = 'check-item' + (checked ? ' checked':'');
+      row.innerHTML = `
+        <input type="checkbox" id="${key}" ${checked?'checked':''}>
+        <label for="${key}">${item}</label>
+      `;
+      row.querySelector('input').addEventListener('change', e=>{
+        checklistState[key] = e.target.checked;
+        saveChecklist(checklistState);
+        renderChecklists();
+      });
+      container.appendChild(row);
+    });
+  });
+  const pct = totalItems ? Math.round((checkedItems/totalItems)*100) : 0;
+  document.getElementById('pack-progress').style.width = pct+'%';
+  document.getElementById('pack-progress-text').textContent = `準備状況: ${checkedItems} / ${totalItems} 完了 (${pct}%)`;
+}
+renderChecklists();
+
+// ---------- Budget ----------
+function loadExpenses(){
+  const saved = localStorage.getItem('india_expenses');
+  return saved ? JSON.parse(saved) : [];
+}
+function saveExpenses(data){
+  localStorage.setItem('india_expenses', JSON.stringify(data));
+}
+let expenses = loadExpenses();
+
+function loadRate(){
+  const saved = localStorage.getItem('india_rate');
+  return saved ? parseFloat(saved) : 1.9;
+}
+const rateInput = document.getElementById('rate-input');
+rateInput.value = loadRate();
+rateInput.addEventListener('input', ()=>{
+  localStorage.setItem('india_rate', rateInput.value);
+  renderExpenses();
+});
+
+function renderExpenses(){
+  const list = document.getElementById('expense-list');
+  list.innerHTML = '';
+  let total = 0;
+  expenses.slice().reverse().forEach((exp)=>{
+    const realIdx = expenses.indexOf(exp);
+    total += exp.amt;
+    const row = document.createElement('div');
+    row.className = 'expense-row';
+    row.innerHTML = `
+      <div>
+        <div>${exp.desc}</div>
+        <div class="cat">${exp.cat}</div>
+      </div>
+      <div style="display:flex;align-items:center;">
+        <span class="amt">₹${exp.amt.toLocaleString()}</span>
+        <button class="del" data-idx="${realIdx}">✕</button>
+      </div>
+    `;
+    list.appendChild(row);
+  });
+  list.querySelectorAll('.del').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+      expenses.splice(e.target.dataset.idx,1);
+      saveExpenses(expenses);
+      renderExpenses();
+    });
+  });
+  const rate = parseFloat(rateInput.value) || 1.9;
+  document.getElementById('total-inr').textContent = '₹' + total.toLocaleString();
+  document.getElementById('total-jpy').textContent = '¥' + Math.round(total*rate).toLocaleString();
+}
+document.getElementById('expense-form').addEventListener('submit', e=>{
+  e.preventDefault();
+  const form = e.target;
+  const desc = form.desc.value.trim();
+  const amt = parseFloat(form.amt.value);
+  const cat = form.cat.value;
+  if(!desc || isNaN(amt)) return;
+  expenses.push({desc, amt, cat});
+  saveExpenses(expenses);
+  form.reset();
+  renderExpenses();
+});
+renderExpenses();
+</script>
+</body>
+</html>
